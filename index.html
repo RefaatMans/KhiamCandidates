@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khaim Jobs — Design 5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ── Splash screen ── */
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.75rem;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(21,101,192,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(46,125,50,0.3) 0%, transparent 50%),
+        #0B1E3D;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #splash.fade-out { opacity: 0; pointer-events: none; }
+    .splash-logos {
+      display: flex; align-items: center; gap: 1.5rem;
+      animation: splashIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .splash-logo {
+      height: 200px; width: 200px; border-radius: 20px;
+      object-fit: contain; background: white;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1) inset;
+    }
+    .splash-sep {
+      width: 1px; height: 64px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    .splash-title {
+      font-size: 1.1rem; font-weight: 800; color: white; letter-spacing: -0.02em;
+      opacity: 0; animation: fadeUp 0.5s 0.4s ease both;
+    }
+    .splash-subtitle {
+      font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      opacity: 0; animation: fadeUp 0.5s 0.55s ease both; margin-top: -1rem;
+    }
+    .splash-bar {
+      width: 120px; height: 3px; border-radius: 99px;
+      background: rgba(255,255,255,0.12); overflow: hidden;
+      opacity: 0; animation: fadeUp 0.4s 0.7s ease both;
+    }
+    .splash-bar-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(to right, #1565C0, #2E7D32);
+      animation: barGrow 1.4s 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+    @keyframes splashIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes barGrow {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0B1E3D;
+      --navy-mid:  #122547;
+      --navy-lite: #1A3560;
+      --blue:      #1565C0;
+      --green:     #2E7D32;
+      --surface:   #F4F7FC;
+      --white:     #ffffff;
+      --border:    #E2E8F4;
+      --ink:       #1A2744;
+      --muted:     #6B7A99;
+      --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════════════════════════════════════
+       LAYOUT — sidebar + main
+    ═══════════════════════════════════════ */
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 240px;
+      min-width: 240px;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar-top {
+      padding: 1.75rem 1.5rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .sidebar-logos {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-logo {
+      height: 44px;
+      width: 44px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: white;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+    }
+
+    .sidebar-logo-sep {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .sidebar-site-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+
+    .sidebar-tagline {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+    }
+
+    /* accent bar under logos */
+    .sidebar-accent {
+      height: 3px;
+      border-radius: 99px;
+      background: linear-gradient(to right, var(--blue), var(--green));
+      margin-top: 1rem;
+    }
+
+    .sidebar-nav {
+      padding: 1.25rem 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .sidebar-section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      padding: 0.5rem 0.5rem 0.3rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: all 180ms var(--ease);
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .sidebar-link.active {
+      background: rgba(21, 101, 192, 0.35);
+      color: white;
+    }
+
+    .sidebar-link .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--cat-color, rgba(255,255,255,0.3));
+    }
+
+    .sidebar-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .lang-btn {
+      flex: 1;
+      padding: 0.4rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 160ms var(--ease);
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover {
+      background: rgba(21, 101, 192, 0.5);
+      color: white;
+      border-color: rgba(21, 101, 192, 0.6);
+    }
+
+    /* ─── MAIN ─── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      min-width: 0;
+    }
+
+    /* top strip */
+    .main-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .main-header-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .main-header-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    .dept-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+    }
+
+    /* content area */
+    .main-content {
+      flex: 1;
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    /* ─── CATEGORY GRID ─── */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+    }
+
+    .category-card {
+      position: relative !important;
+      background: var(--white) !important;
+      border-radius: 14px !important;
+      border: 1px solid var(--border) !important;
+      padding: 1.25rem !important;
+      text-decoration: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+      transition: all 240ms var(--ease) !important;
+      color: var(--ink) !important;
+      overflow: hidden !important;
+    }
+
+    /* colored left accent line */
+    .category-card::before {
+      content: "" !important;
+      position: absolute !important;
+      top: 0; bottom: 0; left: 0 !important;
+      width: 4px !important;
+      background: var(--cat-color) !important;
+      border-radius: 4px 0 0 4px !important;
+      opacity: 0 !important;
+      transition: opacity 240ms var(--ease) !important;
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1) !important;
+      border-color: var(--cat-color) !important;
+      text-decoration: none !important;
+    }
+
+    .category-card:hover::before {
+      opacity: 1 !important;
+    }
+
+    .category-card-header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+
+    .category-icon {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 11px !important;
+      background: var(--cat-color-soft) !important;
+      display: grid !important;
+      place-items: center !important;
+      font-size: 1.35rem !important;
+      flex-shrink: 0 !important;
+      transition: transform 280ms var(--ease) !important;
+    }
+
+    .category-card:hover .category-icon {
+      transform: scale(1.08) rotate(-4deg) !important;
+    }
+
+    .count-chip {
+      font-size: 0.7rem !important;
+      font-weight: 700 !important;
+      color: var(--cat-color) !important;
+      background: var(--cat-color-soft) !important;
+      padding: 0.22rem 0.6rem !important;
+      border-radius: 999px !important;
+    }
+
+    .category-name {
+      font-size: 0.88rem !important;
+      font-weight: 700 !important;
+      color: var(--ink) !important;
+      margin: 0 !important;
+    }
+
+    .category-count {
+      font-size: 0.72rem !important;
+      color: var(--muted) !important;
+      margin: 0 !important;
+      font-weight: 500 !important;
+    }
+
+    /* arrow shown on hover */
+    .category-arrow {
+      position: absolute !important;
+      bottom: 0.85rem !important;
+      right: 0.85rem !important;
+      color: var(--cat-color) !important;
+      opacity: 0 !important;
+      transform: translateX(-4px) !important;
+      transition: all 220ms var(--ease) !important;
+    }
+
+    .category-card:hover .category-arrow {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+    }
+
+    /* ═══════════════════════════════════════
+       MOBILE — collapse sidebar to top bar
+    ═══════════════════════════════════════ */
+    @media (max-width: 860px) {
+      body { flex-direction: column; }
+
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: 0;
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem;
+      }
+
+      .sidebar-top {
+        border: none;
+        padding: 0;
+      }
+
+      .sidebar-logos { margin: 0; }
+      .sidebar-logo { height: 34px; width: 34px; }
+      .sidebar-site-name { font-size: 0.85rem; }
+      .sidebar-tagline, .sidebar-accent, .sidebar-nav, .sidebar-footer { display: none; }
+
+      .lang-toggle {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+      }
+      .lang-btn { flex: none; padding: 0.35rem 0.65rem; }
+
+      .main-content { padding: 1rem; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
+    }
+
+    @media (max-width: 520px) {
+      .main-header { padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash screen -->
+  <div id="splash">
+    <div class="splash-logos">
+      <img src="img/Logo.jpeg" class="splash-logo" alt="Khaim Municipality">
+      <!-- <div class="splash-sep"></div>
+      <img src="img/LogoJameiye.jpeg" class="splash-logo" alt="Crisis Cell"> -->
+    </div>
+    <!-- <div class="splash-title">Khaim Jobs</div> -->
+    <div class="splash-subtitle">Municipality Talent Portal</div>
+    <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+  </div>
+
+  <script>
+    (function () {
+      const splash = document.getElementById("splash");
+      setTimeout(() => {
+        splash.classList.add("fade-out");
+        splash.addEventListener("transitionend", () => splash.remove(), { once: true });
+      }, 2300);
+    })();
+  </script>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-logos">
+        <img src="img/Logo.jpeg" class="sidebar-logo" alt="Khaim Municipality">
+        <div class="sidebar-logo-sep"></div>
+        <img src="img/LogoJameiye.jpeg" class="sidebar-logo" alt="Crisis Cell">
+      </div>
+      <div class="sidebar-site-name">Khaim Jobs</div>
+      <div class="sidebar-tagline">Municipality Talent Portal</div>
+      <div class="sidebar-accent"></div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="sidebar-section-label">Departments</div>
+      <!-- populated by JS -->
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="lang-toggle">
+        <span class="lang-btn active">EN</span>
+        <a href="ar/index.html" class="lang-btn">AR</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="main-header">
+      <div>
+        <div class="main-header-title">All Departments</div>
+        <div class="main-header-sub">Browse qualified candidates by field</div>
+      </div>
+      <div class="dept-badge" id="deptBadge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        10 Departments
+      </div>
+    </div>
+
+    <div class="main-content">
+      <section class="category-grid" id="categoryGrid"></section>
+    </div>
+  </div>
+
+  <script type="module">
+    import { db, collection, getDocs, CATEGORIES } from "./js/firebase-config.js";
+
+    const grid       = document.getElementById("categoryGrid");
+    const sidebarNav = document.getElementById("sidebarNav");
+    const deptBadge  = document.getElementById("deptBadge");
+
+    function escapeHtml(s) {
+      return String(s ?? "").replace(/[&<>"']/g, (c) =>
+        ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    }
+
+    async function loadCounts() {
+      const counts = Object.fromEntries(CATEGORIES.map((c) => [c.id, 0]));
+      try {
+        const snap = await getDocs(collection(db, "candidates"));
+        snap.forEach((d) => {
+          const cat = d.data().category;
+          if (counts[cat] !== undefined) counts[cat]++;
+        });
+      } catch (err) { console.warn("Counts:", err); }
+      return counts;
+    }
+
+    function countLabel(n) {
+      if (n === 0) return "No candidates yet";
+      if (n === 1) return "1 candidate";
+      return `${n} candidates`;
+    }
+
+    function buildSidebar(counts) {
+      // keep the label, replace the links
+      const label = sidebarNav.querySelector(".sidebar-section-label");
+      sidebarNav.innerHTML = "";
+      sidebarNav.appendChild(label);
+      for (const cat of CATEGORIES) {
+        const a = document.createElement("a");
+        a.href = `category.html?cat=${encodeURIComponent(cat.id)}`;
+        a.className = "sidebar-link";
+        a.style.setProperty("--cat-color", cat.color);
+        const n = counts[cat.id] ?? 0;
+        a.innerHTML = `
+          <span class="dot"></span>
+          <span style="flex:1">${escapeHtml(cat.name)}</span>
+          ${n > 0 ? `<span style="font-size:0.68rem;color:rgba(255,255,255,0.35);font-weight:600">${n}</span>` : ""}
+        `;
+        sidebarNav.appendChild(a);
+      }
+    }
+
+    function render(counts) {
+      grid.innerHTML = "";
+      let totalCandidates = 0;
+      for (const cat of CATEGORIES) {
+        const count = counts[cat.id] ?? 0;
+        totalCandidates += count;
+        const a = document.createElement("a");
+        a.href = `category.html?cat=${encodeURIComponent(cat.id)}`;
+        a.className = "category-card";
+        a.style.setProperty("--cat-color", cat.color);
+        a.style.setProperty("--cat-color-soft", cat.colorSoft);
+        a.innerHTML = `
+          <div class="category-card-header">
+            <div class="category-icon">${cat.icon}</div>
+            ${count > 0 ? `<span class="count-chip">${count}</span>` : ""}
+          </div>
+          <div>
+            <h2 class="category-name">${escapeHtml(cat.name)}</h2>
+            <p class="category-count">${countLabel(count)}</p>
+          </div>
+          <span class="category-arrow" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        `;
+        grid.appendChild(a);
+      }
+      // update badge
+      deptBadge.innerHTML = `
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        ${totalCandidates > 0 ? totalCandidates + " Candidates" : "10 Departments"}
+      `;
+    }
+
+    (async () => {
+      const zeroCounts = Object.fromEntries(CATEGORIES.map((c) => [c.id, 0]));
+      render(zeroCounts);
+      buildSidebar(zeroCounts);
+      const counts = await loadCounts();
+      render(counts);
+      buildSidebar(counts);
+    })();
+  </script>
+</body>
+</html>

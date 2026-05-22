@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة التحكم — وظائف الخيام</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">K</span>
+        <span class="brand-name">وظائف الخيام</span>
+      </a>
+      <nav>
+        <span id="adminEmail" class="admin-email"></span>
+        <button id="logoutBtn" class="nav-link" hidden>تسجيل الخروج</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+
+    <!-- Login view -->
+    <section class="auth-card" id="loginSection">
+      <h1>تسجيل دخول المشرف</h1>
+      <p class="subtitle">سجّل دخولك لرفع سِيَر المرشحين الذاتية.</p>
+      <form id="loginForm" class="form">
+        <label class="field">
+          <span>البريد الإلكتروني</span>
+          <input type="email" id="loginEmail" required autocomplete="email" />
+        </label>
+        <label class="field">
+          <span>كلمة المرور</span>
+          <input type="password" id="loginPassword" required autocomplete="current-password" />
+        </label>
+        <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+        <p id="loginError" class="error-msg" hidden></p>
+      </form>
+    </section>
+
+    <!-- Admin panel -->
+    <section id="adminPanel" hidden>
+      <h1>لوحة التحكم</h1>
+      <p class="subtitle">ارفع سيرة ذاتية جديدة أو أدر السير الموجودة.</p>
+
+      <div class="admin-grid">
+        <!-- Upload form -->
+        <div class="card">
+          <h2>رفع سيرة ذاتية</h2>
+          <form id="uploadForm" class="form">
+            <label class="field">
+              <span>اسم المرشح</span>
+              <input type="text" id="candidateName" required placeholder="مثال: محمد علي" />
+            </label>
+
+            <label class="field">
+              <span>رقم الهاتف</span>
+              <input type="tel" id="candidatePhone" required placeholder="مثال: +961 70 123 456" />
+            </label>
+
+            <label class="field">
+              <span>الفئة</span>
+              <select id="candidateCategory" required>
+                <option value="">اختر فئة...</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>السيرة الذاتية (PDF فقط، حجم أقصى 10MB)</span>
+              <input type="file" id="candidateFile" accept="application/pdf" required />
+            </label>
+
+            <div class="progress-wrap" id="progressWrap" hidden>
+              <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+              <span id="progressText">0%</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="uploadBtn">رفع السيرة الذاتية</button>
+            <p id="uploadStatus" class="status-msg" hidden></p>
+          </form>
+        </div>
+
+        <!-- Existing CVs -->
+        <div class="card">
+          <div class="card-header">
+            <h2>السير الذاتية الموجودة</h2>
+            <select id="filterCategory" class="filter-select">
+              <option value="">جميع الفئات</option>
+            </select>
+          </div>
+          <div id="adminCandidatesList" class="admin-candidates-list">
+            <div class="loading">جارٍ التحميل...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Edit Candidate Modal -->
+  <div class="modal" id="editModal" hidden>
+    <div class="modal-backdrop" data-close-edit></div>
+    <div class="modal-content edit-modal-content">
+      <div class="modal-header">
+        <h2>تعديل بيانات المرشح</h2>
+        <button class="btn-icon" data-close-edit aria-label="إغلاق">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="editForm" class="form">
+          <label class="field">
+            <span>اسم المرشح</span>
+            <input type="text" id="editName" required />
+          </label>
+
+          <label class="field">
+            <span>رقم الهاتف</span>
+            <input type="tel" id="editPhone" required placeholder="مثال: +961 70 123 456" />
+          </label>
+
+          <label class="field">
+            <span>الفئة</span>
+            <select id="editCategory" required></select>
+          </label>
+
+          <label class="field">
+            <span>استبدال السيرة الذاتية <span class="field-optional">(اختياري — اتركه فارغاً للإبقاء على الحالية)</span></span>
+            <input type="file" id="editFile" accept="application/pdf" />
+            <p class="current-file" id="editCurrentFile"></p>
+          </label>
+
+          <div class="progress-wrap" id="editProgressWrap" hidden>
+            <div class="progress-bar"><div class="progress-fill" id="editProgressFill"></div></div>
+            <span id="editProgressText">0%</span>
+          </div>
+
+          <p id="editStatus" class="status-msg" hidden></p>
+
+          <div class="edit-actions">
+            <button type="button" class="btn btn-secondary" data-close-edit>إلغاء</button>
+            <button type="submit" class="btn btn-primary" id="editSaveBtn">حفظ التغييرات</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> وظائف الخيام</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

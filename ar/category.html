@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المرشحون — وظائف الخيام</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ── Layout: sidebar + main (sidebar on right in RTL) ── */
+    body {
+      display: flex !important;
+      flex-direction: row-reverse !important;
+      min-height: 100vh !important;
+      overflow: hidden !important;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 240px;
+      min-width: 240px;
+      background: #0B1E3D;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .sidebar-top {
+      padding: 1.5rem 1.4rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .sidebar-logos {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .sidebar-logo {
+      height: 40px;
+      width: 40px;
+      border-radius: 9px;
+      object-fit: contain;
+      background: white;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+    }
+
+    .sidebar-logo-sep {
+      width: 1px;
+      height: 26px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .sidebar-site-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.15rem;
+    }
+
+    .sidebar-tagline {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+
+    .sidebar-accent {
+      height: 3px;
+      border-radius: 99px;
+      background: linear-gradient(to left, #1565C0, #2E7D32);
+      margin-top: 0.9rem;
+    }
+
+    .sidebar-nav {
+      padding: 1rem 0.85rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      overflow-y: auto;
+    }
+
+    .sidebar-section-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      padding: 0.4rem 0.5rem 0.25rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.5rem 0.7rem;
+      border-radius: 9px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: background 160ms, color 160ms;
+    }
+
+    .sidebar-link:hover {
+      background: rgba(255,255,255,0.07);
+      color: white;
+      text-decoration: none;
+    }
+
+    .sidebar-link.active {
+      background: rgba(21,101,192,0.35);
+      color: white;
+    }
+
+    .sidebar-link .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--cat-color, rgba(255,255,255,0.3));
+    }
+
+    .sidebar-footer {
+      padding: 0.9rem 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .lang-toggle-row {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .lang-toggle-btn {
+      flex: 1;
+      padding: 0.38rem;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: transparent;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 150ms;
+      font-family: inherit;
+    }
+
+    .lang-toggle-btn.active,
+    .lang-toggle-btn:hover {
+      background: rgba(21,101,192,0.5);
+      color: white;
+      border-color: rgba(21,101,192,0.6);
+    }
+
+    /* ── Main content area ── */
+    .cat-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      min-width: 0;
+      background: var(--bg, #edf4fc);
+    }
+
+    .cat-main-header {
+      background: white;
+      border-bottom: 1px solid var(--border, #DDE3F0);
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .cat-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+
+    .cat-title-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+
+    .cat-title-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text, #1A2336);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cat-title-text p {
+      font-size: 0.75rem;
+      color: var(--text-soft, #6B7A99);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    .cat-search {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .cat-search .search-icon {
+      position: absolute;
+      right: 0.75rem;
+      left: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-faint, #9CA3AF);
+      pointer-events: none;
+    }
+
+    .cat-search input {
+      padding: 0.5rem 2.4rem 0.5rem 1rem;
+      border: 1px solid var(--border, #DDE3F0);
+      border-radius: 9px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      color: var(--text, #1A2336);
+      background: var(--bg, #edf4fc);
+      outline: none;
+      width: 220px;
+      transition: border-color 180ms, box-shadow 180ms;
+      text-align: right;
+    }
+
+    .cat-search input:focus {
+      border-color: var(--primary, #1565C0);
+      box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
+      background: white;
+    }
+
+    .cat-main-content {
+      flex: 1;
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    /* fix phone number direction inside RTL */
+    .candidate-contact { direction: ltr; unicode-bidi: embed; }
+
+    /* ── Mobile ── */
+    @media (max-width: 860px) {
+      body { flex-direction: column-reverse !important; overflow: auto !important; }
+
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.7rem 1.1rem;
+        overflow: visible;
+      }
+
+      .sidebar-top {
+        border: none;
+        padding: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar-logos { margin: 0; }
+      .sidebar-logo { height: 32px; width: 32px; }
+      .sidebar-site-name { font-size: 0.82rem; }
+      .sidebar-tagline, .sidebar-accent, .sidebar-nav { display: none; }
+
+      .sidebar-footer { border: none; padding: 0; }
+
+      .cat-main { overflow: visible; }
+      .cat-main-header { padding: 0.8rem 1rem; flex-wrap: wrap; }
+      .cat-search input { width: 160px; }
+      .cat-main-content { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar (appears on right in RTL) -->
+  <aside class="sidebar">
+   <a href="/ar/index.html">
+
+     <div class="sidebar-top">
+       <div class="sidebar-logos">
+         <img src="../img/Logo.jpeg" class="sidebar-logo" alt="بلدية الخيام">
+         <div class="sidebar-logo-sep"></div>
+         <img src="../img/LogoJameiye.jpeg" class="sidebar-logo" alt="خلية الأزمة">
+        </div>
+        <div class="sidebar-site-name">وظائف الخيام</div>
+        <div class="sidebar-tagline">بوابة المواهب البلدية</div>
+        <div class="sidebar-accent"></div>
+      </div>
+    </a>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="sidebar-section-label">الأقسام</div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="lang-toggle-row">
+        <a href="../category.html" class="lang-toggle-btn" id="enLink">EN</a>
+        <span class="lang-toggle-btn active">AR</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="cat-main">
+
+    <div class="cat-main-header">
+      <div class="cat-header-left">
+        <div class="cat-title-icon" id="catTitleIcon"></div>
+        <div class="cat-title-text">
+          <h1 id="categoryTitle">المرشحون</h1>
+          <p id="categoryCount">جارٍ التحميل...</p>
+        </div>
+      </div>
+      <div class="cat-search">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="ابحث عن مرشح بالاسم…" />
+      </div>
+    </div>
+
+    <div id="subcatFilter" class="subcat-filter-bar" hidden></div>
+
+    <div class="cat-main-content">
+      <section class="candidates-list" id="candidatesList">
+        <div class="loading">جارٍ تحميل المرشحين...</div>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- PDF Preview Modal -->
+  <div class="modal" id="pdfModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">معاينة السيرة الذاتية</h2>
+        <div class="modal-actions">
+          <a id="modalDownload" class="btn btn-secondary" download>تحميل</a>
+          <a id="modalOpen" class="btn btn-secondary" target="_blank" rel="noopener">فتح في تبويب جديد</a>
+          <button class="btn-icon" data-close-modal aria-label="إغلاق">&times;</button>
+        </div>
+      </div>
+      <iframe id="modalIframe" class="modal-iframe" title="معاينة السيرة الذاتية"></iframe>
+    </div>
+  </div>
+
+  <script type="module" src="js/category.js"></script>
+</body>
+</html>
