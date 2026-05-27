@@ -53,19 +53,22 @@ const auth = getAuth(app);
 // Edit this list to add/remove categories.
 // `id` is the value stored in Firestore (lowercase, no spaces).
 export const CATEGORIES = [
-  { id: "engineering", name: "Engineering & IT", nameAr: "هندسة وتقنية المعلومات", icon: "⚙️", color: "#f59e0b", colorSoft: "#fef3c7", subcategories: [
-    { id: "systems-admin",          name: "Systems Administrator", nameAr: "مدير أنظمة" },
-    { id: "mobile-dev",             name: "Mobile App Developer",  nameAr: "مطور تطبيقات جوال" },
-    { id: "it-specialist",          name: "IT Specialist",         nameAr: "متخصص تقنية المعلومات" },
-    { id: "electrical-engineer",    name: "Electrical Engineer",   nameAr: "مهندس كهربائي" },
-    { id: "mechanical-engineer",    name: "Mechanical Engineer",   nameAr: "مهندس ميكانيكي" },
+  { id: "engineering", name: "Engineering", nameAr: "هندسة", icon: "⚙️", color: "#f59e0b", colorSoft: "#fef3c7", subcategories: [
     { id: "civil-engineer",         name: "Civil Engineer",        nameAr: "مهندس مدني" },
+    { id: "mechanical-engineer",    name: "Mechanical Engineer",   nameAr: "مهندس ميكانيكي" },
+    { id: "electrical-engineer",    name: "Electrical Engineer",   nameAr: "مهندس كهربائي" },
     { id: "industrial-engineer",    name: "Industrial Engineer",   nameAr: "مهندس صناعي" },
     { id: "mechatronics",           name: "Mechatronics Engineer", nameAr: "مهندس ميكاترونيك" },
-    { id: "architecture",           name: "Architecture",          nameAr: "هندسة معمارية" },
-    { id: "computer-engineer",      name: "Computer Engineer",     nameAr: "مهندس حاسوب" },
     { id: "communication-engineer", name: "Communication Engineer",nameAr: "مهندس اتصالات" },
-    { id: "data-science",           name: "Data Science",          nameAr: "علم البيانات" },
+    { id: "computer-engineer",      name: "Computer Engineer",     nameAr: "مهندس حاسوب" },
+    { id: "architecture",           name: "Architecture",          nameAr: "هندسة معمارية" },
+  ]},
+  { id: "it", name: "Information Technology", nameAr: "تقنية المعلومات", icon: "💻", color: "#3b82f6", colorSoft: "#dbeafe", subcategories: [
+    { id: "computer-scientist",  name: "Computer Scientist",    nameAr: "عالم حاسوب" },
+    { id: "systems-admin",       name: "Systems Administrator", nameAr: "مدير أنظمة" },
+    { id: "mobile-dev",          name: "Mobile App Developer",  nameAr: "مطور تطبيقات جوال" },
+    { id: "it-specialist",       name: "IT Specialist",         nameAr: "متخصص تقنية المعلومات" },
+    { id: "data-science",        name: "Data Science",          nameAr: "علم البيانات" },
   ]},
   { id: "pharma",           name: "Pharma",           nameAr: "صيدلة",          icon: "💊", color: "#10b981", colorSoft: "#d1fae5", subcategories: [] },
   { id: "business",         name: "Business",         nameAr: "أعمال",          icon: "📊", color: "#8b5cf6", colorSoft: "#ede9fe", subcategories: [] },
