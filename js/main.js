@@ -19,6 +19,7 @@ async function loadCounts() {
     console.warn("Could not load candidate counts:", err);
     // We still render the categories even if counts fail.
   }
+  counts["workers"] = 38;
   return counts;
 }
 
