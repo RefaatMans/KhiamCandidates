@@ -381,7 +381,7 @@
 
     /* ── Mobile ── */
     @media (max-width: 860px) {
-      body { flex-direction: column-reverse; }
+      body { flex-direction: column; }
 
       .sidebar {
         width: 100%;
@@ -395,13 +395,14 @@
         padding: 0.75rem 1.25rem;
       }
 
+      .sidebar > a { flex: 1; min-width: 0; display: block; }
       .sidebar-top { border: none; padding: 0; }
       .sidebar-logos { margin: 0; }
       .sidebar-logo { height: 34px; width: 34px; }
       .sidebar-site-name { font-size: 0.85rem; }
       .sidebar-tagline, .sidebar-accent, .sidebar-nav { display: none; }
 
-      .sidebar-footer { border: none; padding: 0; }
+      .sidebar-footer { border: none; padding: 0; flex-shrink: 0; }
       .lang-toggle { flex-direction: row; gap: 0.25rem; }
       .lang-btn { flex: none; padding: 0.35rem 0.65rem; }
 

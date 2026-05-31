@@ -433,12 +433,20 @@
       .sidebar-top {
         border: none;
         padding: 0;
+        flex: 1;
+        min-width: 0;
       }
 
       .sidebar-logos { margin: 0; }
       .sidebar-logo { height: 34px; width: 34px; }
       .sidebar-site-name { font-size: 0.85rem; }
-      .sidebar-tagline, .sidebar-accent, .sidebar-nav, .sidebar-footer { display: none; }
+      .sidebar-tagline, .sidebar-accent, .sidebar-nav { display: none; }
+
+      .sidebar-footer {
+        border: none;
+        padding: 0;
+        flex-shrink: 0;
+      }
 
       .lang-toggle {
         display: flex;

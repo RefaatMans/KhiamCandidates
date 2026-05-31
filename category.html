@@ -16,7 +16,7 @@
       body {
         display: flex !important;
         flex-direction: row !important;
-        min-height: 100vh !important;
+        height: 100vh !important;
         overflow: hidden !important;
       }
 
@@ -284,12 +284,8 @@
           overflow: visible;
         }
 
-        .sidebar-top {
-          border: none;
-          padding: 0;
-          flex: 1;
-          min-width: 0;
-        }
+        .sidebar > a { flex: 1; min-width: 0; display: block; }
+        .sidebar-top { border: none; padding: 0; }
 
         .sidebar-logos {
           margin: 0;

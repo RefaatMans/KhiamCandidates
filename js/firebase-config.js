@@ -70,14 +70,13 @@ export const CATEGORIES = [
     { id: "it-specialist",       name: "IT Specialist",         nameAr: "متخصص تقنية المعلومات" },
     { id: "data-science",        name: "Data Science",          nameAr: "علم البيانات" },
   ]},
-  { id: "pharma",           name: "Pharma",           nameAr: "صيدلة",          icon: "💊", color: "#10b981", colorSoft: "#d1fae5", subcategories: [] },
-  { id: "business",         name: "Business",         nameAr: "أعمال",          icon: "📊", color: "#8b5cf6", colorSoft: "#ede9fe", subcategories: [] },
-  { id: "design",           name: "Design",           nameAr: "تصميم",          icon: "🎨", color: "#ec4899", colorSoft: "#fce7f3", subcategories: [] },
-  { id: "marketing",        name: "Marketing",        nameAr: "تسويق",          icon: "📣", color: "#ef4444", colorSoft: "#fee2e2", subcategories: [] },
-  { id: "finance",          name: "Finance",          nameAr: "مالية",          icon: "💰", color: "#059669", colorSoft: "#d1fae5", subcategories: [] },
-  { id: "healthcare",       name: "Healthcare",       nameAr: "رعاية صحية",     icon: "🩺", color: "#06b6d4", colorSoft: "#cffafe", subcategories: [] },
-  { id: "graphic-design",   name: "Graphic Design",   nameAr: "تصميم جرافيك",  icon: "🖌️", color: "#f97316", colorSoft: "#ffedd5", subcategories: [] },
-  { id: "education",        name: "Education",        nameAr: "تعليم",          icon: "🎓", color: "#0ea5e9", colorSoft: "#e0f2fe", subcategories: [] },
+  { id: "pharma",           name: "Pharma & Labs",      nameAr: "صيدلة ومختبرات", icon: "💊", color: "#10b981", colorSoft: "#d1fae5", subcategories: [] },
+  { id: "business",         name: "Business & Finance", nameAr: "أعمال ومالية",   icon: "📊", color: "#8b5cf6", colorSoft: "#ede9fe", subcategories: [] },
+  { id: "marketing",        name: "Marketing",          nameAr: "تسويق",          icon: "📣", color: "#ef4444", colorSoft: "#fee2e2", subcategories: [] },
+  { id: "healthcare",       name: "Healthcare",         nameAr: "رعاية صحية",     icon: "🩺", color: "#06b6d4", colorSoft: "#cffafe", subcategories: [] },
+  { id: "graphic-design",   name: "Graphic Design",     nameAr: "تصميم جرافيك",  icon: "🖌️", color: "#f97316", colorSoft: "#ffedd5", subcategories: [] },
+  { id: "education",        name: "Education",          nameAr: "تعليم",          icon: "🎓", color: "#0ea5e9", colorSoft: "#e0f2fe", subcategories: [] },
+  { id: "workers",          name: "Workers & Professions", nameAr: "عمال ومهن",  icon: "🔧", color: "#64748b", colorSoft: "#f1f5f9", subcategories: [] },
 ];
 
 export function getCategoryById(id) {
