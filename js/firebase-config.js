@@ -71,13 +71,34 @@ export const CATEGORIES = [
     { id: "it-specialist",       name: "IT Specialist",         nameAr: "متخصص تقنية المعلومات" },
     { id: "data-science",        name: "Data Science",          nameAr: "علم البيانات" },
   ]},
-  { id: "pharma",           name: "Pharma & Labs",      nameAr: "صيدلة ومختبرات", icon: "💊", color: "#10b981", colorSoft: "#d1fae5", subcategories: [] },
-  { id: "business",         name: "Business & Finance", nameAr: "أعمال ومالية",   icon: "📊", color: "#8b5cf6", colorSoft: "#ede9fe", subcategories: [] },
-  { id: "marketing",        name: "Marketing",          nameAr: "تسويق",          icon: "📣", color: "#ef4444", colorSoft: "#fee2e2", subcategories: [] },
-  { id: "healthcare",       name: "Healthcare",         nameAr: "رعاية صحية",     icon: "🩺", color: "#06b6d4", colorSoft: "#cffafe", subcategories: [] },
-  { id: "graphic-design",   name: "Graphic Design",     nameAr: "تصميم جرافيك",  icon: "🖌️", color: "#f97316", colorSoft: "#ffedd5", subcategories: [] },
-  { id: "education",        name: "Education",          nameAr: "تعليم",          icon: "🎓", color: "#0ea5e9", colorSoft: "#e0f2fe", subcategories: [] },
-  { id: "workers",          name: "Workers & Professions", nameAr: "عمال ومهن",  icon: "🔧", color: "#64748b", colorSoft: "#f1f5f9", subcategories: [] },
+  { id: "pharma",         name: "Pharma & Labs",      nameAr: "صيدلة ومختبرات", icon: "💊", color: "#10b981", colorSoft: "#d1fae5", subcategories: [] },
+  { id: "business",       name: "Business & Finance", nameAr: "أعمال ومالية",   icon: "📊", color: "#8b5cf6", colorSoft: "#ede9fe", subcategories: [
+    { id: "administration", name: "Administration", nameAr: "إدارة" },
+    { id: "accounting",     name: "Accounting",     nameAr: "محاسبة" },
+    { id: "finance",        name: "Finance",        nameAr: "مالية" },
+  ]},
+  { id: "marketing",      name: "Marketing",          nameAr: "تسويق",          icon: "📣", color: "#ef4444", colorSoft: "#fee2e2", subcategories: [
+    { id: "medical-rep",    name: "Medical Representative", nameAr: "مندوب طبي" },
+  ]},
+  { id: "healthcare",     name: "Healthcare",         nameAr: "رعاية صحية",     icon: "🩺", color: "#06b6d4", colorSoft: "#cffafe", subcategories: [
+    { id: "nursing",            name: "Nursing",              nameAr: "تمريض" },
+    { id: "physiotherapy",      name: "Physiotherapy",        nameAr: "علاج طبيعي" },
+    { id: "speech-therapy",     name: "Speech Therapy",       nameAr: "علاج النطق" },
+    { id: "elderly-care",       name: "Elderly Care",         nameAr: "رعاية المسنين" },
+    { id: "midwife",            name: "Midwife",              nameAr: "قابلة" },
+    { id: "dentist-assistant",  name: "Dentist Assistant",    nameAr: "مساعد طبيب أسنان" },
+    { id: "pharmacy-assistant", name: "Pharmacy Assistant",   nameAr: "مساعد صيدلي" },
+  ]},
+  { id: "graphic-design",  name: "Graphic Design",   nameAr: "تصميم جرافيك",  icon: "🖌️", color: "#f97316", colorSoft: "#ffedd5", subcategories: [] },
+  { id: "education",       name: "Education",         nameAr: "تعليم",          icon: "🎓", color: "#0ea5e9", colorSoft: "#e0f2fe", subcategories: [
+    { id: "private-teacher",    name: "Private Teacher",          nameAr: "مدرس خاص" },
+    { id: "school-management",  name: "School Management",        nameAr: "إدارة مدرسية" },
+    { id: "special-needs",      name: "Special Needs Education",  nameAr: "تعليم ذوي الاحتياجات الخاصة" },
+  ]},
+  { id: "workers",         name: "Workers & Professions", nameAr: "عمال ومهن",  icon: "🔧", color: "#64748b", colorSoft: "#f1f5f9", subcategories: [] },
+  { id: "hotels",          name: "Hotels & Restaurants",  nameAr: "فنادق ومطاعم", icon: "🏨", color: "#f43f5e", colorSoft: "#ffe4e6", subcategories: [] },
+  { id: "sports",          name: "Sports Coach",          nameAr: "مدرب رياضي",   icon: "🏋️", color: "#22c55e", colorSoft: "#dcfce7", subcategories: [] },
+  { id: "press-tv",        name: "Press & TV",            nameAr: "صحافة وتلفزيون", icon: "📺", color: "#a855f7", colorSoft: "#f3e8ff", subcategories: [] },
 ];
 
 export function getCategoryById(id) {

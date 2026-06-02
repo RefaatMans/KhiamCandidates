@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khaim Jobs</title>
+  <title>Khiam Jobs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -473,8 +473,8 @@
       <!-- <div class="splash-sep"></div>
       <img src="img/LogoJameiye.jpeg" class="splash-logo" alt="Crisis Cell"> -->
     </div>
-    <!-- <div class="splash-title">Khaim Jobs</div> -->
-    <div class="splash-subtitle">Municipality Talent Portal</div>
+    <!-- <div class="splash-title">Khiam Jobs</div> -->
+    <div class="splash-subtitle">Municipality Service Portal</div>
     <div class="splash-bar"><div class="splash-bar-fill"></div></div>
   </div>
 
@@ -496,13 +496,13 @@
         <div class="sidebar-logo-sep"></div>
         <img src="img/LogoJameiye.jpeg" class="sidebar-logo" alt="Crisis Cell">
       </div>
-      <div class="sidebar-site-name">Khaim Jobs</div>
-      <div class="sidebar-tagline">Municipality Talent Portal</div>
+      <div class="sidebar-site-name">Khiam Jobs</div>
+      <div class="sidebar-tagline">Municipality Service Portal</div>
       <div class="sidebar-accent"></div>
     </div>
 
     <nav class="sidebar-nav" id="sidebarNav">
-      <div class="sidebar-section-label">Departments</div>
+      <div class="sidebar-section-label">Majors</div>
       <!-- populated by JS -->
     </nav>
 
@@ -518,12 +518,12 @@
   <div class="main">
     <div class="main-header">
       <div>
-        <div class="main-header-title">All Departments</div>
+        <div class="main-header-title">All Majors</div>
         <div class="main-header-sub">Browse qualified candidates by field</div>
       </div>
       <div class="dept-badge" id="deptBadge">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        10 Departments
+        Majors
       </div>
     </div>
 
@@ -612,7 +612,7 @@
       // update badge
       deptBadge.innerHTML = `
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        ${totalCandidates > 0 ? totalCandidates + " Candidates" : "10 Departments"}
+        ${totalCandidates > 0 ? totalCandidates + " Candidates" : "Majors"}
       `;
     }
 
