@@ -63,6 +63,8 @@ export const CATEGORIES = [
     { id: "computer-engineer",      name: "Computer Engineer",     nameAr: "مهندس حاسوب" },
     { id: "architecture",           name: "Architecture",          nameAr: "هندسة معمارية" },
     { id: "biomedical-engineer",    name: "Biomedical Engineering", nameAr: "هندسة طبية حيوية" },
+    { id: "agriculture",            name: "Agriculture",            nameAr: "زراعة" },
+    { id: "others",                 name: "Others",                 nameAr: "أخرى" },
   ]},
   { id: "it", name: "Information Technology", nameAr: "تقنية المعلومات", icon: "💻", color: "#3b82f6", colorSoft: "#dbeafe", subcategories: [
     { id: "computer-scientist",  name: "Computer Scientist",    nameAr: "عالم حاسوب" },

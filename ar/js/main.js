@@ -18,7 +18,7 @@ async function loadCounts() {
   } catch (err) {
     console.warn("Could not load candidate counts:", err);
   }
-  counts["workers"] = 38;
+  counts["workers"] = 20;
   return counts;
 }
 
