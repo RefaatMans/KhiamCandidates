@@ -97,7 +97,10 @@ export const CATEGORIES = [
     { id: "school-management",  name: "School Management",        nameAr: "إدارة مدرسية" },
     { id: "special-needs",      name: "Special Needs Education",  nameAr: "تعليم ذوي الاحتياجات الخاصة" },
   ]},
-  { id: "workers",         name: "Workers & Professions", nameAr: "عمال ومهن",  icon: "🔧", color: "#64748b", colorSoft: "#f1f5f9", subcategories: [] },
+  { id: "workers",         name: "Workers & Professions", nameAr: "عمال ومهن",  icon: "🔧", color: "#64748b", colorSoft: "#f1f5f9", subcategories: [
+    { id: "electrician", name: "Electrician", nameAr: "كهربائي" },
+    { id: "driver",      name: "Driver",      nameAr: "سائق" },
+  ]},
   { id: "hotels",          name: "Hotels & Restaurants",  nameAr: "فنادق ومطاعم", icon: "🏨", color: "#f43f5e", colorSoft: "#ffe4e6", subcategories: [] },
   { id: "sports",          name: "Sports Coach",          nameAr: "مدرب رياضي",   icon: "🏋️", color: "#22c55e", colorSoft: "#dcfce7", subcategories: [] },
   { id: "press-tv",        name: "Press & TV",            nameAr: "صحافة وتلفزيون", icon: "📺", color: "#a855f7", colorSoft: "#f3e8ff", subcategories: [] },
