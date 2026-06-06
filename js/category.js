@@ -88,7 +88,7 @@ async function loadCandidates() {
 }
 
 function render(candidates) {
-  const displayCount = categoryId === "workers" ? 38 : candidates.length;
+  const displayCount = categoryId === "workers" ? candidates.length + 19 : candidates.length;
   countEl.textContent = `${displayCount} candidate${displayCount === 1 ? "" : "s"}`;
   if (candidates.length === 0) {
     listEl.innerHTML = `<div class="empty">

@@ -19,7 +19,7 @@ async function loadCounts() {
     console.warn("Could not load candidate counts:", err);
     // We still render the categories even if counts fail.
   }
-  counts["workers"] = 20;
+  counts["workers"] = (counts["workers"] || 0) + 19;
   return counts;
 }
 

@@ -553,7 +553,7 @@
           if (counts[cat] !== undefined) counts[cat]++;
         });
       } catch (err) { console.warn("Counts:", err); }
-      counts["workers"] = 20;
+      counts["workers"] = (counts["workers"] || 0) + 19;
       return counts;
     }
 
